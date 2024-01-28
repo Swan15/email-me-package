@@ -10,7 +10,7 @@ import { Options, Return } from "./types";
 export async function emailMe(subject: string, options?: Options): Return{
     const key = process.env.EMAIL_ME_API_KEY || '';
     if (!key) throw new Error('EMAIL_ME_API_KEY not set');
-    const response = await fetch('https://emailme.lol/api/send', {
+    const response = await fetch('https://www.emailme.lol/api/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subject, key, ...options }),

@@ -1,4 +1,4 @@
-# `emailMe` utility function for sending email notifications to the emailMe api
+# `@emailme/emailme-js` utility function for sending email notifications to the emailMe api
 
 - **Documentation:** https://emailme.lol/docs
 - Generate API key: https://emailme.lol/
@@ -8,12 +8,12 @@ The emailMe package is a utility for sending email notifications using the Email
 ## Installation
 
 ```sh
-npm install emailMe
+npm install @emailme/emailme-js
 ```
 or 
 
 ```sh
-yarn add emailMe
+yarn add @emailme/emailme-js
 ```
 
 Add your API key to your .env file:
@@ -24,7 +24,7 @@ EMAIL_ME_API_KEY=YOUR_KEY
 Then you're able to import the function and send email notifications to your email.
 
 ```js
-import { sendRequest } from 'emailMe'
+import { sendRequest } from '@emailme/emailme-js'
 
 sendRequest('emailMe is the best')
 ```

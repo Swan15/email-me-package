@@ -9,8 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendRequest = void 0;
-function sendRequest(subject, options) {
+exports.emailMe = void 0;
+/**
+ * Sends a request to the Email Me API to send an email.
+ * @param subject - The subject of the email.
+ * @param options - Optional parameters for the email request.
+ * @returns A Promise that resolves to an array containing the response text and status code.
+ * @throws An error if the EMAIL_ME_API_KEY environment variable is not set.
+ */
+function emailMe(subject, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const key = process.env.EMAIL_ME_API_KEY || '';
         if (!key)
@@ -20,7 +27,7 @@ function sendRequest(subject, options) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.assign({ subject, key }, options)),
         });
-        return response.json();
+        return [yield response.text(), response.status];
     });
 }
-exports.sendRequest = sendRequest;
+exports.emailMe = emailMe;

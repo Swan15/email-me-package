@@ -5,3 +5,5 @@ export interface Options {
 }
 
 export type Return = Promise<[string, number]>
+
+export function emailMe(subject: string, options?: Options): ReturnType;

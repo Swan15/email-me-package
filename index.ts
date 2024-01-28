@@ -7,7 +7,7 @@ import { Options, Return } from "./types";
  * @returns A Promise that resolves to an array containing the response text and status code.
  * @throws An error if the EMAIL_ME_API_KEY environment variable is not set.
  */
-export async function sendRequest(subject: string, options?: Options): Return{
+export async function emailMe(subject: string, options?: Options): Return{
     const key = process.env.EMAIL_ME_API_KEY || '';
     if (!key) throw new Error('EMAIL_ME_API_KEY not set');
     const response = await fetch('https://emailme.lol/api/send', {

@@ -1,4 +1,4 @@
-import { Options, Return } from "./types";
+import { Options, ReturnType } from "./types";
 
 /**
  * Sends a request to the Email Me API to send an email.
@@ -7,7 +7,7 @@ import { Options, Return } from "./types";
  * @returns A Promise that resolves to an array containing the response text and status code.
  * @throws An error if the EMAIL_ME_API_KEY environment variable is not set.
  */
-export async function emailMe(subject: string, options?: Options): Return{
+export async function emailMe(subject: string, options?: Options): Promise<ReturnType> {
     const key = process.env.EMAIL_ME_API_KEY || '';
     if (!key) throw new Error('EMAIL_ME_API_KEY not set');
     const response = await fetch('https://www.emailme.lol/api/send', {
@@ -15,5 +15,5 @@ export async function emailMe(subject: string, options?: Options): Return{
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subject, key, ...options }),
     });
-    return [await response.text(), response.status]
+    return {message: await response.text(), code: response.status}
 }

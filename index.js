@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51,13 +40,13 @@ exports.emailMe = void 0;
 /**
  * Sends a request to the Email Me API to send an email.
  * @param subject - The subject of the email.
- * @param options - Optional parameters for the email request.
+ * @param description - The body text of the email.
  * @returns A Promise that resolves to an array containing the response text and status code.
  * @throws An error if the EMAIL_ME_API_KEY environment variable is not set.
  */
-function emailMe(subject, options) {
+function emailMe(subject, description) {
     return __awaiter(this, void 0, void 0, function () {
-        var key, response;
+        var key, body, response;
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -65,10 +54,15 @@ function emailMe(subject, options) {
                     key = process.env.EMAIL_ME_API_KEY || '';
                     if (!key)
                         throw new Error('EMAIL_ME_API_KEY not set');
+                    body = {
+                        subject: subject,
+                        key: key,
+                        description: description
+                    };
                     return [4 /*yield*/, fetch('https://www.emailme.lol/api/send', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(__assign({ subject: subject, key: key }, options)),
+                            body: JSON.stringify(body),
                         })];
                 case 1:
                     response = _b.sent();
